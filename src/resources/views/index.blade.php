@@ -5,10 +5,18 @@
 
 @section('content')
     <div class="message">
-        <p>message</p>
+        @if (session('message'))
+            <span class="message message__success">{{ session('message') }}</span>
+        @elseif(count($errors) > 0)
+            <ul class="message__error">
+                @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        @endif
     </div>
     <div class="submission">
-        <form class="submission__form" action="/todos" method="post">
+        <form class="submission__form" action="/todos" method="POST">
             @csrf
             <div class="submission__form-area">
                 <input class="submission__form-input" type="text" name="content">
@@ -25,17 +33,22 @@
             </tr>
             @foreach ($todos as $todo)
                 <tr>
-                    <form action="">
-                        <td colspan="5">{{ $todo->content }}</td>
-                        <td>
-                            <button class="btn update-btn">更新</button>
-                        </td>
+                    <td colspan="6">
+                        <form class="table__content" action="/todos/update?id={{ $todo->id }}" method="POST">
+                            @csrf
+                        <input class="table__content-inputbox" type="text" name="content" value="{{ $todo->content }}">
+                    </td>
+                    <td>
+                        <button class="btn update-btn">更新</button>
+                    </td>
                     </form>
-                    <form action="">
-                        <td>
-                            <button class="btn delete-btn">削除</button>
-                        </td>
-                    </form>
+                    <td>
+                        <form class="table__content" action="/todos/delete?id={{$todo->id}}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn delete-btn">削除</button>
+                        </form>
+                    </td>
+
                 </tr>
             @endforeach
         </table>
