@@ -80,19 +80,28 @@ td {
 
 .table__content {
     margin: 0;
+    display: flex;
+    justify-content: space-between;
+}
+    
+.table__content-item-1 {
+    width: 85%;
+}
+
+.table__content-item-2 {
+    width: 15%;
 }
 
 .table__content-inputbox {
     border: none;
     outline: none;
-    display: block;
     padding: 10px;
     width: 100%;
 }
 
 .update-btn {
     background: #0000ff;
-    
+    margin: 5px auto;
 }
 
 .delete-btn {

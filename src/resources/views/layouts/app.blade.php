@@ -16,7 +16,7 @@
                <a href="/">Todo</a>
             </div>
             <div class="header__nav-category">
-                <a href="/">カテゴリー覧</a>
+                <a href="/categories">カテゴリー覧</a>
             </div>
         </div>
     </header>

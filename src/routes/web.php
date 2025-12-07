@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +18,8 @@ Route::get('/', [TodoController::class, 'index']);
 
 Route::post('/todos', [TodoController::class, 'store']);
 
-Route::post('/todos/delete', [TodoController::class, 'destroy']);
+Route::delete('/todos/delete', [TodoController::class, 'destroy']);
 
-Route::post('/todos/update', [TodoController::class, 'update']);
+Route::patch('/todos/update', [TodoController::class, 'update']);
+
+Route::get('/categories', [CategoryController::class, 'index']);
