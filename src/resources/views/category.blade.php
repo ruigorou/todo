@@ -16,30 +16,45 @@
             </ul>
         @endif
     </div>
-    <div class="submission">
-        <form class="submission__form" action="" method="POST">
-            @csrf
-            <div class="submission__form-area">
-                <input class="submission__form-input" type="text" name="content">
-            </div>
-            <div>
-                <button class="btn submission__form-btn" type="submit">作成</button>
-            </div>
-        </form>
+    <div class="framework">
         <table>
-            <tr>
-                <th colspan="2">
-                    category
-                </th>
+            <th colspan="2">
+                新規作成
+            </th>
+            <form action="/categories" method="post">
+                @csrf
+                <tr>
+                    <td colspan="2"><input class="submission__form-input" type="text" name="name"></td>
+                    <td colspan="1"><button class="btn submission__form-btn" type="submit">作成</button></td>
+                </tr>
+            </form>
+        </table>
+        <div class="blank"></div>
+        <table>
+            <tr class="list__item-underline">
+                <th colspan="2">category</th>
             </tr>
-            <tr>
-                <td>
-                    aaaa
-                </td>
-                <td>
-                    bbbb
-                </td>
-            </tr>
+            @foreach ($categories as $category)
+                <tr class="list__item-underline">
+                    <form action="/categories/update" method="POST">
+                        @method('PATCH')
+                        @csrf
+                        <td colspan="6"><input class="table__content-inputbox" type="text" name="name" value="{{ $category->name }}"></td>
+                        <td>
+                            <input type="hidden" name="id" value="{{ $category->id }}">
+                            <button class="btn update-btn" type="submit">更新</button>
+                        </td>
+                    </form>
+                    <form action="/categories/delete" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <td>
+                            <input type="hidden" name="id" value="{{ $category->id }}">
+                            <button class="btn delete-btn" type="submit">削除</button>
+                        </td>
+                    </form>
+                </tr>
+            @endforeach
         </table>
     </div>
 @endsection

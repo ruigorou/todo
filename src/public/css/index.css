@@ -1,3 +1,38 @@
+/* 共通ｃｓｓ */
+.btn {
+    color: #fff;
+    width: 100%;
+    border: none;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+th {
+    text-align: left;
+    padding: 10px;
+}
+
+td {
+    font-weight: bold;
+    font-size: 12px;
+    padding: 5px;
+}
+
+.list__item-underline {
+    border-bottom: solid 1px black;
+    padding: 0;
+}
+
+.blank {
+    margin-bottom: 30px;
+}
+
+/* 各ブロック */
 .message {
     display: inline-block;
     width: 100%;
@@ -20,9 +55,9 @@
     margin: 0;
 }
 
-.submission {
+.framework {
     display: block;
-    max-width: 500px;
+    max-width: 600px;
     margin: 30px auto;
 }
 
@@ -34,7 +69,6 @@
 
 .submission__form-area {
     width: 60%;
-    margin-bottom: 30px;
 }
 
 .submission__form-input {
@@ -43,40 +77,16 @@
     padding: 10px;
 }
 
-.btn {
-    color: #fff;
-    width: 100%;
-    border: none;
-    padding: 5px;
-    border-radius: 3px;
-}
-
 .submission__form-btn {
     background: #000;
-    padding: 10px 55px;
-}
-
-table {
-    table-layout: fixed;
-}
-
-table, 
-tr{
-    border-bottom: solid 1px black;
-    width: 100%;
-    padding: 0;
-}
-
-th {
-    text-align: left;
     padding: 10px;
 }
 
-td {
-    font-weight: bold;
-    font-size: 12px;
-    padding: 5px;
+.category__list {
+    width: 100%;
+    padding: 10px;
 }
+
 
 .table__content {
     margin: 0;
