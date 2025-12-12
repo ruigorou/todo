@@ -23,26 +23,35 @@
             <form action="/todos" method="post">
                 @csrf
                 <tr>
-                    <td colspan="2"><input class="submission__form-input" type="text" name="content"></td>
-
-                        <td colspan="1"><select class="category__list" name="category_id">
+                    <td colspan="2">
+                        <input class="submission__form-input" type="text" name="content">
+                    </td>
+                    <td colspan="1">
+                        <select class="category__list" name="category_id">
+                            <option value="">カテゴリ</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
-                        </select></td>
+                        </select>
+                    </td>
                     <td colspan="1"><button class="btn submission__form-btn" type="submit">作成</button></td>
                 </tr>
             </form>
             <th>Todo検索</th>
-            <form action="">
+            <form action="todos/search" method="get">
                 @csrf
                 <tr>
-                    <td colspan="2"><input class="submission__form-input" type="text" name="content"></td>
-                    <td colspan="1"><select class="category__list" name="category-list">
+                    <td colspan="2">
+                        <input class="submission__form-input" type="text" name="keyword" value="{{old('keyword')}}">
+                    </td>
+                    <td colspan="1">
+                        <select class="category__list" name="category_id">
+                            <option value="">カテゴリ</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
-                        </select></td>
+                        </select>
+                    </td>
                     <td colspan="1"><button class="btn submission__form-btn" type="submit">検索</button></td>
                 </tr>
             </form>
@@ -60,10 +69,10 @@
                         @csrf
                         <td colspan="3">
                             <input type="hidden" name="id" value="{{ $todo->id }}">
-                            <input class="table__content-inputbox" type="text" name="content" value="{{ $todo->content }}">
+                            <input class="table__content-inputbox" type="text" name="content" value="{{ $todo['content'] }}">
                         </td>
                         <td colspan="3">
-                            <input class="table__content-inputbox" type="text" name="content" value="{{ $todo->category->name }}">
+                            <input class="table__content-inputbox" type="text" name="name" value="{{ $todo->category->name }}">
                         </td>
                         <td>
                             <button type="submit" class="btn update-btn">更新</button>

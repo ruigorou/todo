@@ -26,15 +26,23 @@ class TodoController extends Controller
     public function destroy(Request $request)
     {
         Todo::find($request->id)->delete();
-        return redirect('/');
+        return redirect('/')->with('message', '削除しました');
     }
 
     public function update(TodoRequest $request)
     {
-        $todo = $request->all();
+        $todo = $request->only(['content']);
         unset($todo['_token']);
         Todo::find($request->id)->update($todo);
-        return redirect('/');
+        return redirect('/')->with('message', '更新しました');
+    }
+
+    public function search (Request $request)
+    {
+        $todos = Todo::with('category')->CategorySearch($request->category_id)->KeywordSearch($request->keyword)->get();
+
+        $categories = Category::all();
+        return view('index', compact('todos', 'categories'));
     }
 
 }

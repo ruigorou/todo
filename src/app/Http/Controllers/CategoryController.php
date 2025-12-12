@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
-
+use App\Http\Requests\CategoryRequest;
 class CategoryController extends Controller
 {
     public function index()
@@ -13,14 +13,14 @@ class CategoryController extends Controller
         return view('category', compact('categories'));
     }
 
-    public function store (Request $request)
+    public function store (CategoryRequest $request)
     {
         $category = $request->only(['name']);
         Category::create($category);
         return redirect('/categories')->with('message', 'Categoryを作成しました');
     }
 
-    public function update(Request $request)
+    public function update(CategoryRequest $request)
     {
         $category = $request->all();
         unset($category['_token']);
@@ -31,6 +31,6 @@ class CategoryController extends Controller
     public function destroy(Request $request)
     {
         Category::find($request->id)->delete();
-        return redirect('/categories');
+        return redirect('/categories')->with('message', '削除しました');
     }
 }
